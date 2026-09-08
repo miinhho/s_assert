@@ -1,5 +1,5 @@
 {
-  "name": "s_assert",
+  "name": "@miinhho/s_assert",
   "version": "0.1.0",
   "description": "Compile-time assertions for TypeScript, expressed through the type system — like C++ static_assert.",
   "keywords": [
@@ -36,6 +36,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc -p tsconfig.json",

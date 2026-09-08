@@ -16,9 +16,9 @@ s_assert satisfies Assert<Condition, "message when it fails">;
 ## Install
 
 ```sh
-npm install s_assert
-yarn add s_assert
-pnpm add s_assert
+npm install @miinhho/s_assert
+yarn add @miinhho/s_assert
+pnpm add @miinhho/s_assert
 ```
 
 Requires TypeScript 5.9+ with `strict: true`, and is ESM-only.
@@ -32,7 +32,7 @@ Every assertion except `AssertExhaustive` takes an optional `Message` (shown on 
 Resolves to `true` when `Condition` is exactly `true`, otherwise to `Message`. Both `any` and `never` count as failures, so a condition that collapses — a distributive predicate evaluated at `never`, or booleans joined with `&` — never passes silently; combine conditions with `And`/`AndAll` instead. `Condition` is any `boolean`, so drive it with your own conditional types or ready-made predicates from a library like [type-fest](https://github.com/sindresorhus/type-fest):
 
 ```ts
-import { s_assert, type Assert } from "s_assert";
+import { s_assert, type Assert } from "@miinhho/s_assert";
 import type { AndAll, GreaterThan, IsLiteral } from "type-fest";
 
 s_assert satisfies Assert<1 extends number ? true : false, "1 is not a number">;

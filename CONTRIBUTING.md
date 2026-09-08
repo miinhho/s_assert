@@ -29,7 +29,7 @@ Type-level assertions live in `test/**/*.test-d.ts` and run under Vitest's typec
 
 ```ts
 import { expectTypeOf } from "vitest";
-import type { AssertExhaustive } from "s_assert";
+import type { AssertExhaustive } from "@miinhho/s_assert";
 
 expectTypeOf<AssertExhaustive<never>>().toEqualTypeOf<true>();
 ```
