@@ -1,23 +1,58 @@
 {
   "name": "s_assert",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
+  "description": "Compile-time assertions for TypeScript, expressed through the type system — like C++ static_assert.",
+  "keywords": [
+    "typescript",
+    "types",
+    "static-assert",
+    "compile-time",
+    "assert",
+    "type-level",
+    "exhaustive"
+  ],
   "author": "miinhho",
   "license": "MIT",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "^11.9.0",
-      "onFail": "download"
-    }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miinhho/s_assert.git"
+  },
+  "homepage": "https://github.com/miinhho/s_assert#readme",
+  "bugs": {
+    "url": "https://github.com/miinhho/s_assert/issues"
   },
   "type": "module",
+  "packageManager": "pnpm@11.26.0",
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run --typecheck",
+    "test:watch": "vitest --typecheck",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
+    "prepublishOnly": "pnpm build"
+  },
   "dependencies": {
     "type-fest": "^5.9.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.12",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.0"
   }
 }

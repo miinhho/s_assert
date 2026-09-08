@@ -1,0 +1,42 @@
+name: Publish
+
+# Trusted Publishing (OIDC), no NPM_TOKEN. Requires a one-time trusted publisher
+# for this repo + workflow on npmjs.com: https://docs.npmjs.com/trusted-publishers
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  id-token: write # OIDC trusted publishing + provenance
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      # Node 24 bundles npm >= 11.5.1, which supports OIDC trusted publishing.
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: "https://registry.npmjs.org"
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify before publish
+        run: |
+          pnpm check
+          pnpm typecheck
+          pnpm test
+          pnpm build
+
+      - name: Publish to npm
+        run: npm publish --provenance --access public
